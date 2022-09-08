@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	{%load mptt_tags%}
+
+	{%load static%}
+	<!-- Meta Tag -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name='copyright' content=''>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Title Tag  -->
+	<title>ShopCorner</title>
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="{%static '/images/favicon.png' %}">
+	<!-- Web Font -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+		rel="stylesheet">
+
+	<!-- StyleSheet -->
+	<!-- Custom -->
+	<link rel="stylesheet" href=" {%static 'css/custom-index.css' %}">
+	<link rel="stylesheet" href=" {%static 'css/custom.css' %}">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href=" {%static 'css/bootstrap.css' %}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{%static 'css/magnific-popup.min.css ' %}">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="{%static 'css/font-awesome.css ' %}">
+	<!-- Fancybox -->
+	<link rel="stylesheet" href=" {%static 'css/jquery.fancybox.min.css' %}">
+	<!-- Themify Icons -->
+	<link rel="stylesheet" href="{%static 'css/themify-icons.css ' %}">
+	<!-- Nice Select CSS -->
+	<link rel="stylesheet" href=" {%static 'css/niceselect.css' %}">
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href=" {%static 'css/animate.css' %}">
+	<!-- Flex Slider CSS -->
+	<link rel="stylesheet" href=" {%static 'css/flex-slider.min.css' %}">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href=" {%static 'css/owl-carousel.css' %}">
+	<!-- Slicknav -->
+	<link rel="stylesheet" href=" {%static 'css/slicknav.min.css' %}">
+
+	<!-- Eshop StyleSheet -->
+	<link rel="stylesheet" href=" {%static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{%static 'css/secondstyle.css ' %}">
+	<link rel="stylesheet" href=" {%static 'css/responsive.css' %}">
+
+
+
+</head>
+
+<body class="js">
+
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="preloader-inner">
+			<div class="preloader-icon">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	
+	<!-- Header -->
+	<header class="header shop">
+		<!-- Topbar -->
+		<div class="topbar">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-12 col-12">
+						<!-- Top Left -->
+						<div class="top-left">
+							<ul class="list-main">
+								<li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
+								<li><i class="ti-email"></i> syedamahamfahim@gmail.com</li>
+							</ul>
+						</div>
+						<!--/ End Top Left -->
+					</div>
+					<div class="col-lg-7 col-md-12 col-12">
+						<!-- Top Right -->
+						<div class="right-content">
+							<ul class="list-main">
+								<li><a href="https://www.google.com/maps/place/LuckyOne+Mall/@24.9321896,67.0872167,15z/data=!4m13!1m7!3m6!1s0x0:0x35709df45c0003aa!2sLuckyOne+Mall!8m2!3d24.9321896!4d67.0872167!10e1!3m4!1s0x0:0x35709df45c0003aa!8m2!3d24.9321896!4d67.0872167"><i class="ti-location-pin"></i> Store location </a></li>
+								<li><i class="ti-alarm-clock"></i> <a href="/shop">Daily deal</a></li>
+								<li><a href="#"><i class="ti-facebook"></i>Facebook</a></li>
+								<li><a href="#"><i class="ti-instagram"></i>Instagram</a></li>
+							</ul>
+						</div>
+						<!-- End Top Right -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Topbar -->
+		<div class="middle-inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-12">
+						<!-- Logo -->
+						<div class="logo">
+							<a href="/"><h4><span style="color: #262F75;">Shop</span><span style="color: #ef3f49;">Corner</span></h4></a>
+						</div>
+						<!--/ End Logo -->
+						
+						<div class="mobile-nav"></div>
+					</div>
+					<div class="col-lg-8 col-md-7 col-12" style="margin-top: 20px;">
+						<div class="container">
+							<form class="d-flex" action="/search" method="GET" value="{{request.GET.q}}">
+								<input class="form-control me-2" type="text" name="q" value="{{request.GET.q}}" placeholder="Search posts"/>
+							   <input id="new-arrival-btn" type="submit" name="submit" value="Search"/>
+							   </form>
+
+							  <!-- <button class="btn btn-outline-success" type="submit"><i class="ti-search"></i></button> -->
+							
+						  </div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-12">
+						<div class="right-bar">
+							<!-- Search Form -->
+							
+							<div class="sinlge-bar shopping">
+								{%if user.id is not None%}
+								<a href="/account"  title="Account"><i class="fa fa-user-circle-o"></i></a>
+								<!-- <a href="#" class="single-icon"><img src="{{ request.session.userimage }}" alt="" style="height: 50px;width: 40px;border-radius: 100%;"></a> -->
+								{%else%}
+								<a href="/account"  title="Account"><i class="fa fa-user-circle-o"></i></a>
+								{%endif%}
+								<!-- Shopping Item -->
+								<div class="shopping-item">
+									{%if user.id is not None%}
+									<div class="dropdown-cart-header">
+										<h6>{{ user.username }}</h6>
+										<br>
+									</div>
+									<ul class="shopping-list">
+										<li>
+											<a href="/user_profile"  title="Account"><i class="fa fa-user-circle-o"></i>
+										&nbsp;&nbsp; My Account </a>
+										</li>
+										<li>
+											<a href="/wishlist"  title="Account"><i class="fa fa-heart-o"></i>
+										&nbsp;&nbsp; My Wishlist </a>
+										</li>
+										<li>
+											<a href="/shopcart/"  title="Cart"><i class="ti-bag"></i>
+										&nbsp;&nbsp; Cart </a>
+										</li>
+										<li>
+											<a href="/checkout"  title="Checkout"><i class="fa fa-credit-card-alt"></i>
+										&nbsp;&nbsp; Checkout </a>
+										</li>
+										
+									</ul>
+									<div class="bottom">
+										<a href="/logout" class="btn animate">Logout</a>
+									</div>
+									{%else%}
+								<p>
+									<a href="/login">Login</a> or <a href="/signup">Sign Up</a>
+									{%endif%}
+								</p>
+								</div>
+								<!--/ End Shopping Item -->
+							</div>
+							<div class="sinlge-bar shopping">
+								<a href="#" class="single-icon"><i class="ti-bag"></i> <span
+										class="total-count">{{total_product}}</span></a>
+								<!-- Shopping Item -->
+								<div class="shopping-item">
+									<div class="dropdown-cart-header">
+										<span>{{total_product}} Items</span>
+										<a href="/shopcart">View Cart</a>
+									</div>
+									<ul class="shopping-list">
+										{% for rs in shopcart %}
+										<li>
+											<a class="cart-img" href="#"><img src=" {{rs.product.image.url}}"alt="#" ></a>
+											<h4><a href="#">{{rs.product.title}}</a></h4>
+											<p class="quantity">{{rs.quantity}}x - <span class="amount">${{rs.product.price}}</span></p>
+											<a href="/orders/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')" class="main-btn icon-btn">
+												<i class="ti-trash remove-icon"></i></a>
+										</li>
+										{%endfor%}
+									</ul>
+									<div class="bottom">
+										<div class="total">
+											<span>Total</span>
+											
+											<span class="total-amount">${{total}}</span>
+									   
+										</div>
+										{%if user.id is not None%}
+										<a href="/checkout" class="btn animate">Checkout</a>
+										{%else%}
+										<a href="/login">Login</a> or <a href="/signup">Sign Up</a>
+										{%endif%}
+									</div>
+								</div>
+								<!--/ End Shopping Item -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+	 <!-- Header Inner -->
+	 <div class="header-inner">
+        <div class="container">
+            <div class="cat-nav-head">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="menu-area">
+                            <!-- Main Menu -->
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse">	
+                                    <div class="nav-inner">	
+                                        <ul class="nav main-menu menu navbar-nav">
+                                            <li class="active"><a href="/">Home</a></li>
+                                            <li><a href="/shop">Shop</a></li>
+                                            <li><a href="/category/5/men">Men Fashion<i class="ti-angle-down"></i><span class="new">Trending</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/category/10/men-clothing">Men Clothing</a></li>
+                                                    <li><a href="/category/11/men-accessories">Men Accessories </a></li>
+                                                    <li><a href="/category/9/men-shoes">Men Shoes </a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="category/8/women">Women Fashion<i class="ti-angle-down"></i><span class="new">Trending</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/category/13/clothing">Women Clothing</a></li>
+                                                    <li><a href="/category/12/accessories">Women Accessories </a></li>
+                                                    <li><a href="/category/14/shoes">Women Shoes </a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="/contact">Contact Us</a></li>
+                                            <li><a href="/aboutus">About Us</a></li>									<li><a href="/faqs">FAQS</a></li>
+                                            <li><a href="/shipping_detail">Shipping Detail</a>
+                                            </li>									
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!--/ End Main Menu -->	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Header Inner -->
+</header>
+<!--/ End Header -->
+
+<!--  Hero Section -->
+<section class="hero-area2">
+	<div class="home-slider">
+		<!-- Start Single Slider -->
+		<div class="single-slider overlay" style="background-image: url('https://wpthemesgrid.com/themes/eshop/images/slider/slider-1.jpg');">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="content">
+							<p class="sub-title">Women's Clothing</p>
+							<h4 class="title">Mega sale up to 50% off for all</h4>
+							<p class="des">Giordanr Shirt is the best design of Artist Alex Goot. You should got it for your style</p>
+							<div class="button">
+								<a href="/category/13/clothing" class="btn">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Single Slider -->
+		<!-- Start Single Slider -->
+		<div class="single-slider overlay" style="background-image: url('https://wpthemesgrid.com/themes/eshop/images/slider/slider-2.jpg');" >
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="content">
+							<p class="sub-title">Man's collection</p>
+							<h4 class="title">Giordanor <br> Shirt</h4>
+							<p class="des">Giordanr Shirt is the best design of Artist Alex Goot. You should got it for your style</p>
+							<div class="button">
+								<a href="/category/5/men" class="btn">Discover Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Single Slider -->
+		<!-- Start Single Slider -->
+		<div class="single-slider overlay" style="background-image: url('https://wpthemesgrid.com/themes/eshop/images/slider/slider-3.jpg');">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="content">
+							<p class="sub-title">Women's Accessories</p>
+							<h4 class="title">Mega sale up to 50% off</h4>
+							<p class="des">Giordanr Shirt is the best design of Artist Alex Goot. You should got it for your style</p>
+							<div class="button">
+								<a href="/category/12/accessories" class="btn">Discover Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Single Slider -->
+		<!-- Start Single Slider -->
+		<div class="single-slider overlay" style="background-image: url('https://wpthemesgrid.com/themes/eshop/images/slider/slider-4.jpg');" >
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="content">
+							<p class="sub-title">Man's collection</p>
+							<h4 class="title">Mega sale up to 70% off</h4>
+							<p class="des">Giordanr Shirt is the best design of Artist Alex Goot. You should got it for your style</p>
+							<div class="button">
+								<a href="/category/5/men" class="btn">Discover Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Single Slider -->
+		<!-- Start Single Slider -->
+		<div class="single-slider overlay" style="background-image: url('https://wpthemesgrid.com/themes/eshop/images/slider/slider-5.jpg');">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="content">
+							<p class="sub-title">Men Accessories</p>
+							<h4 class="title">Black sunglasses <br> for men</h4>
+							<p class="des">Giordanr Shirt is the best design of Artist Alex Goot. You should got it for your style</p>
+							<div class="button">
+								<a href="/category/11/men-accessories" class="btn">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Single Slider -->
+	</div>
+</section>
+<!--/ End Hero Area 2 -->
+
+	<!-- Start Small Banner  -->
+	<section class="small-banner section" style="padding: 0px;">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- Single Banner  -->
+				<div class="col-lg-4 col-md-6 col-12" style="padding: 0px;"
+				>
+					<div class="single-banner">
+						<img src="{%static '/images/women-banner.jpg' %}" alt="#" style="height: 350px;">
+						<div class="content">
+							<h6  id="women-collection">Woman's Collectons</h6>
+							<h3 id="women-sub-collection">Summer travel <br> collection</h3>
+							<a href="/category/8/women" id="women-collection-btn">Discover Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+				<!-- Single Banner  -->
+				<div class="col-lg-4 col-md-6 col-12" style="padding: 0px;">
+					<div class="single-banner">
+						<img src="{%static '/images/new-arrival.jpg' %}" alt="#" style="height: 350px;">
+						<div class="content">
+							<p id="new-arrival">NEW <br> Arrivals</p>
+							<h3 id="new-sub-arrival">Check out this week's hottest styles </h3>
+							<div class="new-arrivla-container">
+								<a href="/shop" id="new-arrival-btn">Shop Now</a>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+				<!-- Single Banner  -->
+				<div class="col-lg-4 col-12" style="padding: 0px;">
+					<div class="single-banner tab-height">
+						<img src="{%static '/images/men-banner.jpg' %}" alt="#" style="height: 350px;">
+						<div class="content">
+							<p id="women-collection" >MEN'S Section</p>
+							<h3 id="women-sub-collection">Mid Season <br> Up to <span style="color: #ef3f49;">40%</span> Off</h3>
+							<a href="/category/5/men" id="women-collection-btn">Discover Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+			</div>
+		</div>
+	</section>
+	<!-- End Small Banner -->
+
+	<!-- Start Product Area -->
+	<div class="product-area section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-title">
+						<h2>Trending Item</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="product-info">
+						<div class="nav-main">
+							<!-- Tab Nav -->
+							<ul class="nav nav-tabs" id="myTab" role="tablist">
+								<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#trending"
+										role="tab">Trending</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#men"
+										role="tab">Men</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#women"
+										role="tab">Women</a></li>
+								<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#recommanded"
+										role="tab">Top Viewed</a></li>
+							</ul>
+							<!--/ End Tab Nav -->
+						</div>
+						<div class="tab-content" id="myTabContent">
+							<!-- Start Single Tab -->
+							<div class="tab-pane fade show active" id="trending" role="tabpanel">
+								<div class="tab-single">
+									<div class="row">
+										{%for rs in hometab_lastest_product%}
+										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
+											<div class="single-product">
+												<div class="product-img">
+													<a href="/product/{{ rs.id }}/{{ rs.slug }}">
+														<img class="default-img tab-image"
+															src="{{rs.image.url}}" alt="#" style="width: 400px ;
+															height: 355px ;" >
+														
+													</a>
+													<div class="button-head">
+														<div class="product-action">
+															<a href="/product/{{ rs.id }}/{{ rs.slug }}"><i
+																	class=" ti-eye"></i><span>Quick Shop</span></a>
+															<a title="Wishlist" href="/orders/addtowishlist/{{ rs.id }}"><i
+																	class=" ti-heart "></i><span>Add to
+																	Wishlist</span></a>
+															
+														</div>
+														<div class="product-action-2">
+															<a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+														</div>
+													</div>
+												</div>
+												<div class="product-content">
+													<h3><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h3>
+													<div class="product-price">
+														<span>${{rs.price}}</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										{%endfor%}
+									</div>
+								</div>
+							</div>
+							<!--/ End Single Tab -->
+							<!-- Start Single Tab -->
+							<div class="tab-pane fade show active" id="men" role="tabpanel">
+								<div class="tab-single">
+									<div class="row">
+										{%for rs in hometab_men_product%}
+										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
+											<div class="single-product">
+												<div class="product-img">
+													<a href="/product/{{ rs.id }}/{{ rs.slug }}">
+														<img class="default-img tab-image"
+															src="{{rs.image.url}}" alt="#" style="width: 400px ;
+															height: 355px ;" >
+														
+													</a>
+													<div class="button-head">
+														<div class="product-action">
+															<a  href="/orders/addtowishlist/{{ rs.id }}"><i
+																	class=" ti-eye"></i><span>Quick Shop</span></a>
+															<a title="Wishlist" href="#"><i
+																	class=" ti-heart "></i><span>Add to
+																	Wishlist</span></a>
+															
+														</div>
+														<div class="product-action-2">
+															<a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+														</div>
+													</div>
+												</div>
+												<div class="product-content">
+													<h3><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h3>
+													<div class="product-price">
+														<span>${{rs.price}}</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										{%endfor%}
+									</div>
+								</div>
+							</div>
+							<!--/ End Single Tab -->
+							<!-- Start Single Tab -->
+							<div class="tab-pane fade show active" id="women" role="tabpanel">
+								<div class="tab-single">
+									<div class="row">
+										{%for rs in hometab_women_product%}
+										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
+											<div class="single-product">
+												<div class="product-img">
+													<a href="/product/{{ rs.id }}/{{ rs.slug }}">
+														<img class="default-img tab-image"
+															src="{{rs.image.url}}" alt="#" style="width: 400px ;
+															height: 355px ;" >
+														
+													</a>
+													<div class="button-head">
+														<div class="product-action">
+															<a href="/product/{{ rs.id }}/{{ rs.slug }}"><i
+																	class=" ti-eye"></i><span>Quick Shop</span></a>
+															<a title="Wishlist" href="/orders/addtowishlist/{{ rs.id }}"><i
+																	class=" ti-heart "></i><span>Add to
+																	Wishlist</span></a>
+															
+														</div>
+														<div class="product-action-2">
+															<a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+														</div>
+													</div>
+												</div>
+												<div class="product-content">
+													<h3><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h3>
+													<div class="product-price">
+														<span>${{rs.price}}</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										{%endfor%}
+									</div>
+								</div>
+							</div>
+							<!--/ End Single Tab -->
+							<!-- Start Single Tab -->
+							<div class="tab-pane fade" id="recommanded" role="tabpanel">
+								<div class="row">
+									{%for rs in top_view_product%}
+									<div class="col-xl-3 col-lg-4 col-md-4 col-12">
+										<div class="single-product">
+											<div class="product-img">
+												<a href="/product/{{ rs.id }}/{{ rs.slug }}">
+													<img class="default-img tab-image"
+															src="{{rs.image.url}}" alt="#" style="width: 400px ;
+															height: 355px ;" >
+												
+												</a>
+												<div class="button-head">
+													<div class="product-action">
+														<a href="/product/{{ rs.id }}/{{ rs.slug }}"><i
+															class=" ti-eye"></i><span>Quick Shop</span></a>
+														<a title="Wishlist" href="/orders/addtowishlist/{{ rs.id }}"><i
+																class=" ti-heart "></i><span>Add to
+																Wishlist</span></a>
+														
+													</div>
+													<div class="product-action-2">
+														<a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+													</div>
+												</div>
+											</div>
+											<div class="product-content">
+												<h3><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h3>
+												<div class="product-price">
+													<span>${{rs.price}}</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									{%endfor%}
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Product Area -->
+
+	<!-- Start Midium Banner  -->
+	<section class="midium-banner">
+		<div class="container">
+			<div class="row">
+				<!-- Single Banner  -->
+				<div class="col-lg-6 col-md-6 col-12">
+					<div class="single-banner">
+						<img src="{%static '/images/mid-banner1.jpg' %}" alt="#">
+						<div class="content">
+							<p>Man's Collectons</p>
+							<h3>Man's Accessoires <br>Up to<span> 50%</span></h3>
+							<a href="/category/11/men-accessories">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+				<!-- Single Banner  -->
+				<div class="col-lg-6 col-md-6 col-12">
+					<div class="single-banner">
+						<img src="{%static '/images/mid-banner3.jpg' %}" alt="#">
+						<div class="content">
+							<p>Women Clothing </p>
+							<h3>mid season <br> up to <span>70%</span></h3>
+							<a href="/category/13/clothing" class="btn">Shop Now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /End Single Banner  -->
+			</div>
+		</div>
+	</section>
+	<!-- End Midium Banner -->
+
+	<!-- Start Most Popular -->
+	<div class="product-area most-popular section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section-title">
+						<h2>Hot Item</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="owl-carousel popular-slider">
+						<!-- Start Single Product -->
+						{% for rs in products_slider%}
+						<div class="single-product">
+							<div class="product-img">
+								<a href="/product/{{ rs.id }}/{{ rs.slug }}">
+									<img class="default-img slider_images" src="{{rs.image.url}}" alt="#">
+									<img class="hover-img slider_images" src="{{rs.image.url}}" alt="#">
+									<span class="out-of-stock">Hot</span>
+								</a>
+								<div class="button-head">
+									<div class="product-action">
+										<a href="/product/{{ rs.id }}/{{ rs.slug }}"><i
+											class=" ti-eye"></i><span>Quick Shop</span></a>
+										<a title="Wishlist" href="/orders/addtowishlist/{{ rs.id }}"><i class=" ti-heart "></i><span>Add to
+												Wishlist</span></a>
+										<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
+												Compare</span></a>
+									</div>
+									<div class="product-action-2">
+										<a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+									</div>
+								</div>
+							</div>
+							<div class="product-content">
+								<h3><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h3>
+								<div class="product-price">
+									<span class="old">{{rs.price}}</span>
+									<span>{{rs.price}}</span>
+									<a href="/product/{{product.id}}/{{product.slug}}">Buy Now </a>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Most Popular Area -->
+
+	<section class="section free-version-banner" id="free-version">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-8 offset-md-2 col-xs-12">
+					<div class="section-title mb-60">
+						<span class="text-black wow fadeInDown" data-wow-delay=".2s"
+							style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;">Deal Of The Day</span>
+						<h2 class="text-black wow fadeInUp" data-wow-delay=".4s"
+							style=" visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">New Collection<br> Are Now Live</h2>
+						<p class="text-black wow fadeInUp" data-wow-delay=".6s"
+							style=" visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
+							 Starting At<span style="color: #262F75; font-size: 20px;"> $199 </span>
+						</p>
+
+						<div class="button">
+							<a href="/shop" target="_blank"
+								rel="nofollow" class="btn wow fadeInUp" id="new-arrival-btn" data-wow-delay=".8s">Shop Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Start Shop Home List  -->
+	<section class="shop-home-list section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="row">
+						<div class="col-12">
+							<div class="shop-section-title">
+								<h1>Lastest Product</h1>
+							</div>
+						</div>
+					</div>
+					<!-- Start Single List  -->
+					{% for rs in lastest_product %}
+					<div class="single-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-12">
+								<div class="list-image overlay">
+									<img src="{{rs.image.url}}" alt="#" class="three_col_product"">
+									<a href="/orders/addtoshopcart/{{ rs.id }}" class="buy"><i class="fa fa-shopping-bag"></i></a>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12 no-padding">
+								<div class="content">
+									<h4 class="title"><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h4>
+									<p class="price with-discount">{{rs.price}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- End Single List  -->
+
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="row">
+						<div class="col-12">
+							<div class="shop-section-title">
+								<h1>Recommanded Product</h1>
+							</div>
+						</div>
+					</div>
+					<!-- Start Single List  -->
+					{% for rs in recommanded_product %}
+					<div class="single-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-12">
+								<div class="list-image overlay">
+									<img src="{{rs.image.url}}" alt="#" class="three_col_product">
+									<a href="/orders/addtoshopcart/{{ rs.id }}" class="buy"><i class="fa fa-shopping-bag"></i></a>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12 no-padding">
+								<div class="content">
+									<h4 class="title"><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h4>
+									<p class="price with-discount">{{rs.price}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- End Single List  -->
+				
+				</div>
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="row">
+						<div class="col-12">
+							<div class="shop-section-title">
+								<h1>Top viewed</h1>
+							</div>
+						</div>
+					</div>
+					<!-- Start Single List  -->
+					{% for rs in viewed_product%}
+					<div class="single-list">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-12">
+								<div class="list-image overlay">
+									<img src="{{rs.image.url}}" alt="#" class="three_col_product">
+									<a href="/orders/addtoshopcart/{{ rs.id }}" class="buy"><i class="fa fa-shopping-bag"></i></a>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-12 no-padding">
+								<div class="content">
+									<h4 class="title"><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h4>
+									<p class="price with-discount">{{rs.price}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					<!-- End Single List  -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Shop Home List  -->
+
+
+
+	<!-- Start Shop Services Area -->
+	<section class="shop-services section home">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-rocket"></i>
+						<h4>Free shiping</h4>
+						<p>Orders over $100</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-reload"></i>
+						<h4>Free Return</h4>
+						<p>Within 30 days returns</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-lock"></i>
+						<h4>Sucure Payment</h4>
+						<p>100% secure payment</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-tag"></i>
+						<h4>Best Peice</h4>
+						<p>Guaranteed price</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Shop Services Area -->
+
+		<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup" style="margin: 50px 0;">
+<form action="https://gmail.us10.list-manage.com/subscribe/post?u=dbcccf1a1392e291d94b269b1&amp;id=e4603c4d27" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+		<div class="container" style="align-items: center;
+		text-align: center;
+		margin-bottom: 20px;">
+		<h4>Newsletter</h4>
+		<p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+		</div>
+<div class="mc-field-group" style="display: inline-block;
+width: 50%;
+margin: 0 25%;
+align-items: center;">
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_dbcccf1a1392e291d94b269b1_e4603c4d27" tabindex="-1" value=""></div>
+    <div class="clear" style="display: flex;
+    justify-content: center;
+    align-items: center;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background: #262F75;
+    padding: 0px 27px;
+    border-radius: 30px;
+    margin-top: -15px;"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+
+	
+
+	<!-- Start Footer Area -->
+	<footer class="footer">
+		<!-- Footer Top -->
+		<div class="footer-top section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer about">
+							<div class="logo">
+								<a href="/"><img src="images/logo2.png" alt="#"></a>
+							</div>
+							<p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna
+								eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+								facilisis luctus, metus.</p>
+							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456
+										789</a></span></p>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-2 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer links">
+							<h4>Information</h4>
+							<ul>
+								<li><a href="/aboutus">About Us</a></li>
+								<li><a href="/faq">Faq</a></li>
+								<li><a href="#">Terms & Conditions</a></li>
+								<li><a href="/contact">Contact Us</a></li>
+								<li><a href="#">Help</a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-2 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer links">
+							<h4>Customer Service</h4>
+							<ul>
+								<li><a href="#">Payment Methods</a></li>
+								<li><a href="#">Money-back</a></li>
+								<li><a href="#">Returns</a></li>
+								<li><a href="#">Shipping</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer social">
+							<h4>Get In Touch</h4>
+							<!-- Single Widget -->
+							<div class="contact">
+								<ul>
+									<li>NO. 342 - London Oxford Street.</li>
+									<li>012 United Kingdom.</li>
+									<li>info@eshop.com</li>
+									<li>+032 3456 7890</li>
+								</ul>
+							</div>
+							<!-- End Single Widget -->
+							<ul>
+								<li><a href="#"><i class="ti-facebook"></i></a></li>
+								<li><a href="#"><i class="ti-twitter"></i></a></li>
+								<li><a href="#"><i class="ti-flickr"></i></a></li>
+								<li><a href="#"><i class="ti-instagram"></i></a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Footer Top -->
+		<div class="copyright">
+			<div class="container">
+				<div class="inner">
+					<div class="row">
+						<div class="col-lg-6 col-12">
+							<div class="left">
+								<p>Copyright © 2021 <a href="/"
+										target="_blank">The Corner Store.</a> - All Rights Reserved.</p>
+							</div>
+						</div>
+						<div class="col-lg-6 col-12">
+							<div class="right">
+								<p>Developed By  <a href="https://www.fiverr.com/syedamahamfahim"
+									target="_blank">Syeda Maham Fahim </a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /End Footer Area -->
+
+	<!-- Jquery -->
+	<script src=" {%static 'js/jquery.min.js' %}"></script>
+	<script src=" {%static 'js/jquery-migrate-3.0.0.js' %}"></script>
+	<script src="{%static 'js/jquery-ui.min.js ' %}"></script>
+	<!-- Popper JS -->
+	<script src="{%static 'js/popper.min.js ' %}"></script>
+	<!-- Bootstrap JS -->
+	<script src="{%static 'js/bootstrap.min.js ' %}"></script>
+	<!-- Color JS -->
+	<script src="{%static 'js/colors.js ' %}"></script>
+	<!-- Slicknav JS -->
+	<script src="{%static 'js/slicknav.min.js ' %}"></script>
+	<!-- Owl Carousel JS -->
+	<script src="{%static 'js/owl-carousel.js ' %}"></script>
+	<!-- Magnific Popup JS -->
+	<script src=" {%static 'js/magnific-popup.js' %}"></script>
+	<!-- Waypoints JS -->
+	<script src=" {%static 'js/waypoints.min.js' %}"></script>
+	<!-- Countdown JS -->
+	<script src=" {%static 'js/finalcountdown.min.js' %}"></script>
+	<!-- Nice Select JS -->
+	<script src=" {%static 'js/nicesellect.js' %}"></script>
+	<!-- Flex Slider JS -->
+	<script src=" {%static 'js/flex-slider.js' %}"></script>
+	<!-- ScrollUp JS -->
+	<script src="{%static 'js/scrollup.js ' %}"></script>
+	<!-- Onepage Nav JS -->
+	<script src=" {%static 'js/onepage-nav.min.js' %}"></script>
+	<!-- Easing JS -->
+	<script src="{%static 'js/easing.js  ' %}"></script>
+	<!-- Active JS -->
+	<script src=" {%static 'js/active.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+#women-collection{
+    color: white;
+    letter-spacing: 2px;
+    font-size: 25px;
+    
+}
+#women-sub-collection{
+    color: white;
+    letter-spacing: 2px;
+    padding-top: 7px;
+}
+#women-collection-btn{
+    background: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'Poppins';
+}
+
+#women-collection-btn:hover{
+    color: #FFFFFF;
+    background-color: #ef3f49;
+    border: #ef3f49;
+}
+
+#new-arrival{
+    line-height: 41px;
+    text-align: center;
+    color: black;
+    font-size: 30px;
+    font-weight: 800;
+    font-family: 'Poppins';
+    letter-spacing: 3px;
+}
+#new-sub-arrival{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 23px;
+    color: black;
+}
+#new-arrival-btn{
+    background: #262F75;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'Poppins';
+}
+#new-arrival-btn:hover{
+    color: #FFFFFF;
+    background-color: #ef3f49;
+    border: #ef3f49;
+}
+.new-arrivla-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#free-version{
+    background: url('../images/homepage-banner-secttions.jpg');
+    align-items: center;
+}

@@ -1,0 +1,122 @@
+<div class="product-btns">
+    <form action="/addtoshopcart/{{ product.id }}" method="post" id="post-form">
+        {% csrf_token %}
+        <input type="hidden" name="productid" id="productid" value="{{ product.id }}">
+        <div class="row">
+            {% if product.variant == 'None' %}
+            <div class="qty-input">
+                <span class="text-uppercase">QTY: </span>
+                <input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}">
+                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+                    Cart</button>
+            </div>
+
+            {% elif product.variant == 'Size-Color' %}
+
+            <div class="product-options">
+                <div class="size-option">
+                    <span class="text-uppercase">Size :</span>
+                    <select name="size" id="size">
+                        {% for rs in size %}
+                        <option value="{{ rs.size_id }}">{{ rs.size.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <ul class="color-option">
+                    <li><span class="text-uppercase">Color:</span></li>
+                    {% for rs in color %}
+                    <input type="radio" name="color" value="{{ rs.id }}">
+                    <li>
+                        <a href="#" style=" color: #ffffff; text-shadow: 2px 2px #000000; width: 70px">
+                            {{ rs.color }} ${{ rs.price }}
+                        </a>
+                        <img src="{{ rs.image }}" style="height: 70px">
+
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <p><strong>Availability:</strong> In Stock</p>
+                <div class="qty-input">
+                    <span class="text-uppercase">QTY: </span>
+                    <input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}">
+                    <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+                        Cart</button>
+                </div>
+            </div>
+
+            {% elif product.variant == 'Size' %}
+
+            <div class="product-options">
+                <ul class="size-option">
+                    <li><span class="text-uppercase">Size:</span></li>
+                    <li class="active"><a href="#">S</a></li>
+                    <li><a href="#">XL</a></li>
+                    <li><a href="#">SL</a></li>
+                </ul>
+            </div>
+            <p><strong>Availability:</strong> In Stock</p>
+            <div class="qty-input">
+                <span class="text-uppercase">QTY: </span>
+                <input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}">
+                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+                    Cart</button>
+            </div>
+            {% elif product.variant == 'Color' %}
+            <div class="product-options">
+                <ul class="color-option">
+                    <li><span class="text-uppercase">Color:</span></li>
+                    <li class="active"><a href="#" style="background-color:#475984;"></a></li>
+                    <li><a href="#" style="background-color:#8A2454;"></a></li>
+                    <li><a href="#" style="background-color:#BF6989;"></a></li>
+                    <li><a href="#" style="background-color:#9A54D8;"></a></li>
+                </ul>
+            </div>
+            <br><br><br>
+            <p><strong>Availability:</strong> In Stock</p>
+            <div class="qty-input">
+                <span class="text-uppercase">QTY: </span>
+                <input class="input" name="quantity" type="number" value="1" min="1" max="{{ product.amount }}">
+                <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to
+                    Cart</button>
+            </div>
+            {% endif %}
+        </div>
+        <br>
+
+
+
+
+
+    </form>
+    <div class="pull-right">
+        <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
+        <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
+        <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
+    </div>
+</div>
+
+<div class="pagination">
+
+    {% if products.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ products.previous_page_number }}">previous</a>
+{% endif %}
+    {% for num in products.paginator.page_range%}
+         {% if products.number == num %}
+            <strong>{{ num }}</strong>
+            {% if products.has_next %}
+        <a href="?page={{ products.next_page_number }}" class="pagination-action">
+            <i class="fas fa-angle-double-left"></i>
+        </a>
+        <a href="?page={{ products.paginator.num_pages }}" class="pagination-action">Pervious</a>
+         {% elif num> products.number|add:'-3' and num < products.number|add:'3' %}
+            {{ num }}
+        {% endif %}
+    {% endfor %}
+
+    
+
+</div>

@@ -1,0 +1,17 @@
+# Features
+
+- User Panel
+- Admin Panel
+- Mobile-Friendly Website
+- Search Filter
+- Contact Form
+- Add to cart
+- WistList 
+- Search Function 
+- Mail Chimp integration 
+- Pignations  
+- Recent View Product 
+- Top View Product 
+- Add automate cateorgy on hero section 
+- Reviews section
+- and many other

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title%}Home Base  {% endblock%}</title>
+    <meta name="keywords" content="{% block keywords%} Home keywords  {% endblock%}">
+    <meta name="description" content="{% block description%}Home description  {% endblock%}">
+
+    <!-- Favicon -->
+	<link rel="icon" type="image/png" href="{%static '/images/favicon.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<!-- Web Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+	
+		<!-- StyleSheet -->
+	<!-- Custom -->
+	<link rel="stylesheet" href=" {%static 'css/custom.css' %}">
+    <link rel="stylesheet" href=" {%static 'css/custom-index.css' %}">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href=" {%static 'css/bootstrap.css' %}">
+	<!-- Magnific Popup -->
+    <link rel="stylesheet" href="{%static 'css/magnific-popup.min.css ' %}">
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="{%static 'css/font-awesome.css ' %}">
+	<!-- Fancybox -->
+	<link rel="stylesheet" href=" {%static 'css/jquery.fancybox.min.css' %}">
+	<!-- Themify Icons -->
+    <link rel="stylesheet" href="{%static 'css/themify-icons.css ' %}">
+	<!-- Nice Select CSS -->
+    <link rel="stylesheet" href=" {%static 'css/niceselect.css' %}">
+	<!-- Animate CSS -->
+    <link rel="stylesheet" href=" {%static 'css/animate.css' %}">
+	<!-- Flex Slider CSS -->
+    <link rel="stylesheet" href=" {%static 'css/flex-slider.min.css' %}">
+	<!-- Owl Carousel -->
+    <link rel="stylesheet" href=" {%static 'css/owl-carousel.css' %}">
+	<!-- Slicknav -->
+    <link rel="stylesheet" href=" {%static 'css/slicknav.min.css' %}">
+	
+	<!-- Eshop StyleSheet -->
+	<link rel="stylesheet" href=" {%static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{%static 'css/secondstyle.css ' %}">
+    <link rel="stylesheet" href=" {%static 'css/responsive.css' %}">
+
+</head>
+<body class="js">
+    <!-- Preloader -->
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+{%load mptt_tags%}
+
+<!-- Header -->
+<header class="header shop">
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-12">
+                    <!-- Top Left -->
+                    <div class="top-left">
+                        <ul class="list-main">
+                            <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
+                            <li><i class="ti-email"></i> syedamahamfahim@gmail.com</li>
+                        </ul>
+                    </div>
+                    <!--/ End Top Left -->
+                </div>
+                <div class="col-lg-7 col-md-12 col-12">
+                    <!-- Top Right -->
+                    <div class="right-content">
+                        <ul class="list-main">
+                            <li><a href="https://www.google.com/maps/place/LuckyOne+Mall/@24.9321896,67.0872167,15z/data=!4m13!1m7!3m6!1s0x0:0x35709df45c0003aa!2sLuckyOne+Mall!8m2!3d24.9321896!4d67.0872167!10e1!3m4!1s0x0:0x35709df45c0003aa!8m2!3d24.9321896!4d67.0872167"><i class="ti-location-pin"></i> Store location </a></li>
+                            <li><i class="ti-alarm-clock"></i> <a href="/shop">Daily deal</a></li>
+                            
+							<li><a href="#"><i class="ti-facebook"></i>Facebook</a></li>
+							<li><a href="#"><i class="ti-instagram"></i>Instagram</a></li>
+                        </ul>
+                    </div>
+                    <!-- End Top Right -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Topbar -->
+    <div class="middle-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="/"><h4><span style="color: #262F75;">Shop</span><span style="color: #ef3f49;">Corner</span></h4></a>
+                    </div>
+                    <!--/ End Logo -->
+                    
+                    <div class="mobile-nav"></div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-12" style="margin-top: 20px;">
+                    <div class="container">
+                        <form class="d-flex" action="/search" method="GET" value="{{request.GET.q}}">
+                            <input class="form-control me-2" type="text" name="q" value="{{request.GET.q}}" placeholder="Search posts"/>
+                           <input id="new-arrival-btn" type="submit" name="submit" value="Search"/>
+                           </form>
+
+                          <!-- <button class="btn btn-outline-success" type="submit"><i class="ti-search"></i></button> -->
+                        
+                      </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="right-bar">
+                        <!-- Search Form -->
+                        <div class="sinlge-bar">
+                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="sinlge-bar shopping">
+                            {%if user.id is not None%}
+                            <a href="#" class="single-icon"><img src="{{ request.session.userimage }}" alt="" }} style="height: 50px;width: 40px;border-radius: 100%;"></a>
+                            {%else%}
+                            <a href="/account"  title="Account"><i class="fa fa-user-circle-o"></i></a>
+                            {%endif%}
+                            <!-- Shopping Item -->
+                            <div class="shopping-item">
+                                {%if user.id is not None%}
+                                <div class="dropdown-cart-header">
+                                    <h6>{{ user.username }}</h6>
+                                    <br>
+                                </div>
+                                <ul class="shopping-list">
+                                    <li>
+                                        <a href="/user_profile"  title="Account"><i class="fa fa-user-circle-o"></i>
+                                    &nbsp;&nbsp; My Account </a>
+                                    </li>
+                                    <li>
+                                        <a href="/wishlist"  title="Account"><i class="fa fa-heart-o"></i>
+                                    &nbsp;&nbsp; My Wishlist </a>
+                                    </li>
+                                    <li>
+                                        <a href="/shopcart/"  title="Cart"><i class="ti-bag"></i>
+                                    &nbsp;&nbsp; Cart </a>
+                                    </li>
+                                    <li>
+                                        <a href="/checkout"  title="Checkout"><i class="fa fa-credit-card-alt"></i>
+                                    &nbsp;&nbsp; Checkout </a>
+                                    </li>
+                                    
+                                </ul>
+                                <div class="bottom">
+                                    <a href="/logout" class="btn animate">Logout</a>
+                                </div>
+                                {%else%}
+                            <p>
+                                <a href="/login">Login</a> or <a href="/signup">Sign Up</a>
+                                {%endif%}
+                            </p>
+                            </div>
+                            <!--/ End Shopping Item -->
+                        </div>
+                        <div class="sinlge-bar shopping">
+                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span
+                                    class="total-count">{{total_product}}</span></a>
+                            <!-- Shopping Item -->
+                            <div class="shopping-item">
+                                <div class="dropdown-cart-header">
+                                    <span>{{total_product}} Items</span>
+                                    <a href="/shopcart">View Cart</a>
+                                </div>
+                                <ul class="shopping-list">
+                                    {% for rs in shopcart %}
+                                    <li>
+                                        <a class="cart-img" href="#"><img src=" {{rs.product.image.url}}"alt="#" ></a>
+                                        <h4><a href="#">{{rs.product.title}}</a></h4>
+                                        <p class="quantity">{{rs.quantity}}x - <span class="amount">${{rs.product.price}}</span></p>
+                                        <a href="/orders/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')" class="main-btn icon-btn">
+                                            <i class="ti-trash remove-icon"></i></a>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                                <div class="bottom">
+                                    <div class="total">
+                                        <span>Total</span>
+                                        
+                                        <span class="total-amount">${{total}}</span>
+                                   
+                                    </div>
+                                    {%if user.id is not None%}
+                                    <a href="/checkout" class="btn animate">Checkout</a>
+                                    {%else%}
+                           
+                                <a href="/login">Login</a> or <a href="/signup">Sign Up</a>
+                                {%endif%}
+                                </div>
+                            </div>
+                            <!--/ End Shopping Item -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Inner -->
+    <div class="header-inner">
+        <div class="container">
+            <div class="cat-nav-head">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="menu-area">
+                            <!-- Main Menu -->
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse">	
+                                    <div class="nav-inner">	
+                                        <ul class="nav main-menu menu navbar-nav">
+                                            <li class="active"><a href="/">Home</a></li>
+                                            <li><a href="/shop">Shop</a></li>
+                                            <li><a href="/category/5/men">Men Fashion<i class="ti-angle-down"></i><span class="new">Trending</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/category/10/men-clothing">Men Clothing</a></li>
+                                                    <li><a href="/category/11/men-accessories">Men Accessories </a></li>
+                                                    <li><a href="/category/9/men-shoes">Men Shoes </a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="category/8/women">Women Fashion<i class="ti-angle-down"></i><span class="new">Trending</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/category/13/clothing">Women Clothing</a></li>
+                                                    <li><a href="/category/12/accessories">Women Accessories </a></li>
+                                                    <li><a href="/category/14/shoes">Women Shoes </a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="/contact">Contact Us</a></li>
+                                            <li><a href="/aboutus">About Us</a></li>									<li><a href="/faqs">FAQS</a></li>
+                                            <li><a href="/shipping_detail">Shipping Detail</a>
+                                            </li>									
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!--/ End Main Menu -->	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Header Inner -->
+</header>
+
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href=" #">{% block breadcurm%} Home Base  {% endblock %}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Alert Notification -->
+{% for message in messages  %}            
+<div class="alert alert-{{ message.tags }} alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Message : </strong> {{ message }}
+  </div>
+{% endfor %} 
+
+    {% block content%} 
+    
+
+    {% endblock %}
+
+  
+
+   	<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup" style="margin: 50px 0;">
+<form action="https://gmail.us10.list-manage.com/subscribe/post?u=dbcccf1a1392e291d94b269b1&amp;id=e4603c4d27" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+		<div class="container" style="align-items: center;
+		text-align: center;
+		margin-bottom: 20px;">
+		<h4>Newsletter</h4>
+		<p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+		</div>
+<div class="mc-field-group" style="display: inline-block;
+width: 50%;
+margin: 0 25%;
+align-items: center;">
+	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_dbcccf1a1392e291d94b269b1_e4603c4d27" tabindex="-1" value=""></div>
+    <div class="clear" style="display: flex;
+    justify-content: center;
+    align-items: center;"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" style="background: #262F75;
+    padding: 0px 27px;
+    border-radius: 30px;
+    margin-top: -15px;"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+
+<!-- Start Footer Area -->
+	<footer class="footer">
+		<!-- Footer Top -->
+		<div class="footer-top section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer about">
+							<div class="logo">
+								<a href="/"><img src="images/logo2.png" alt="#"></a>
+							</div>
+							<p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna
+								eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+								facilisis luctus, metus.</p>
+							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456
+										789</a></span></p>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-2 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer links">
+							<h4>Information</h4>
+							<ul>
+								<li><a href="/aboutus">About Us</a></li>
+								<li><a href="/faq">Faq</a></li>
+								<li><a href="#">Terms & Conditions</a></li>
+								<li><a href="/contact">Contact Us</a></li>
+								<li><a href="#">Help</a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-2 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer links">
+							<h4>Customer Service</h4>
+							<ul>
+								<li><a href="#">Payment Methods</a></li>
+								<li><a href="#">Money-back</a></li>
+								<li><a href="#">Returns</a></li>
+								<li><a href="#">Shipping</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer social">
+							<h4>Get In Touch</h4>
+							<!-- Single Widget -->
+							<div class="contact">
+								<ul>
+									<li>NO. 342 - London Oxford Street.</li>
+									<li>012 United Kingdom.</li>
+									<li>info@eshop.com</li>
+									<li>+032 3456 7890</li>
+								</ul>
+							</div>
+							<!-- End Single Widget -->
+							<ul>
+								<li><a href="#"><i class="ti-facebook"></i></a></li>
+								<li><a href="#"><i class="ti-twitter"></i></a></li>
+								<li><a href="#"><i class="ti-flickr"></i></a></li>
+								<li><a href="#"><i class="ti-instagram"></i></a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Footer Top -->
+		<div class="copyright">
+			<div class="container">
+				<div class="inner">
+					<div class="row">
+						<div class="col-lg-6 col-12">
+							<div class="left">
+								<p>Copyright © 2021 <a href="/"
+										target="_blank">The Corner Store.</a> - All Rights Reserved.</p>
+							</div>
+						</div>
+						<div class="col-lg-6 col-12">
+							<div class="right">
+								<p>Developed By  <a href="https://www.fiverr.com/syedamahamfahim"
+									target="_blank">Syeda Maham Fahim </a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /End Footer Area -->
+
+
+
+    	<!-- Jquery -->
+        <script src=" {%static 'js/jquery.min.js' %}"></script>
+        <script src=" {%static 'js/jquery-migrate-3.0.0.js' %}"></script>
+        <script src="{%static 'js/jquery-ui.min.js ' %}"></script>
+        <!-- Popper JS -->
+        <script src="{%static 'js/popper.min.js ' %}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{%static 'js/bootstrap.min.js ' %}"></script>
+        <!-- Color JS -->
+        <script src="{%static 'js/colors.js ' %}"></script>
+        <!-- Slicknav JS -->
+        <script src="{%static 'js/slicknav.min.js ' %}"></script>
+        <!-- Owl Carousel JS -->
+        <script src="{%static 'js/owl-carousel.js ' %}"></script>
+        <!-- Magnific Popup JS -->
+        <script src=" {%static 'js/magnific-popup.js' %}"></script>
+        <!-- Waypoints JS -->
+        <script src=" {%static 'js/waypoints.min.js' %}"></script>
+        <!-- Countdown JS -->
+        <script src=" {%static 'js/finalcountdown.min.js' %}"></script>
+        <!-- Nice Select JS -->
+        <script src=" {%static 'js/nicesellect.js' %}"></script>
+        <!-- Flex Slider JS -->
+        <script src=" {%static 'js/flex-slider.js' %}"></script>
+        <!-- ScrollUp JS -->
+        <script src="{%static 'js/scrollup.js ' %}"></script>
+        <!-- Onepage Nav JS -->
+        <script src=" {%static 'js/onepage-nav.min.js' %}"></script>
+        <!-- Easing JS -->
+        <script src="{%static 'js/easing.js  ' %}"></script>
+        <!-- Active JS -->
+        <script src=" {%static 'js/active.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+</body>
+
+</html>

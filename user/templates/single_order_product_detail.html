@@ -1,0 +1,135 @@
+{% extends 'homebase.html' %}
+{%load mptt_tags%}
+{% block title%}{{ user.username }} Profile {% endblock%}
+{% block keywords%} {{product.description}} {% endblock%}
+{% block description%}{{ product.keywords}} {% endblock%}
+{% load static %}
+
+{% block breadcurm%} {{ user.username }} Profile {% endblock %}
+
+{% block content%}
+
+
+<link rel="stylesheet" href=" {%static 'css/user_profile.css' %}">
+
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="container">
+                    <img src="{{ profile.image.url }}" class="d-block ui-w-80">
+                    <br>
+                    <h6 style="text-align: center;"> {{ order.first_name}} {{ order.last_name }} </h6>
+                    <h6 style="text-align: center;"> {{ order.email}}</h6>
+                    <h6 style="text-align: center;"> {{ order.phone}} </h6>
+                    <br>
+
+                    <div class="container" style="margin: auto;">
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="btn btn-outline-primary" style="margin: auto !important;;"> <a href="/user_profile">Back to My Account</a>
+                        </label> <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="btn btn-outline-primary">
+                            <a href="/logout"> Logout</a>
+
+                        </label> <br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label class="btn btn-outline-primary">
+                            <a href="/shop"> Shop Now </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="order-summary clearfix">
+                    <div class="section-title">
+                        <h3 class="title">Order Detail</h3>
+                    </div>
+                    <table class="shopping-cart-table table">
+                        <tr>
+                            <th class="text-left">Name Surname</th>
+                            <td class="text-left">{{ order.first_name}} {{ order.last_name }} </td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Phone</th>
+                            <td class="text-left">{{ order.phone}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Address No.1 </th>
+                            <td class="text-left">{{ order.address_one}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Address No.2 </th>
+                            <td class="text-left">{{ order.address_two}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">City</th>
+                            <td class="text-left">{{ order.city}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Country</th>
+                            <td class="text-left">{{ order.country}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-left">Status</th>
+                            <td class="text-left">{{ order.status}}</td>
+                        </tr>
+
+                        <tr>
+                            <th class="text-left">Date</th>
+                            <td class="text-left">{{ order.create_at}}</td>
+                        </tr>
+
+                        <th class="text-left">Shipping Inf</th>
+                        <td class="text-left">{{ order.adminnote}}</td>
+                        </tr>
+
+                    </table>
+
+                    <div class="section-title">
+                        <h4 class="title">Order Item List</h4>
+                    </div>
+
+                    <table class="shopping-cart-table table">
+                        <tr>
+                            <th class="text-left">Id </th>
+                            <th class="text-left">Product Name </th>
+                            <th class="text-left">Price </th>
+                            <th class="text-left">Qauatity </th>
+                            <th class="text-left">Amount </th>
+                            <th class="text-left">Status </th>
+                            <th class="text-left">Date </th>
+                        </tr>
+                        {% for rs in orderitems %}
+                            <tr>
+                                <td class="text-left">
+                                    <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                        {% if rs.variant.image_id > 0 %}
+                                            <img src="{{rs.variant.image }}" alt="" style="height: 50px">
+                                        {% else %}
+                                            <img src="{{rs.product.image.url}}" alt="" style="height: 50px">
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td class="text-left">{{ rs.product.title}} {{ rs.variant.size }}   {{ rs.variant.color }}</td>
+                                <td class="text-left">{{ rs.price}} </td>
+                                <td class="text-left">{{ rs.quantity}} </td>
+                                <td class="text-left">{{ rs.amount}} </td>
+                                <td class="text-left">{{ rs.status}} </td>
+                                <td class="text-left">{{ rs.create_at}} </td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+            </div>
+        
+        <!-- /row -->
+    </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+{% endblock %}

@@ -1,0 +1,187 @@
+{% extends 'homebase.html' %}
+{% block title %} {{category.title}} {% endblock %}
+{% load static %}
+{%load mptt_tags%}
+
+{% block breadcurm%} <a href="/category/{{ product.category.id }}/{{ product.category.slug }}">
+{{product.category.title}}</a> {% endblock %}
+{% block content%}
+
+<!-- End Breadcrumbs -->
+{%load mptt_tags%}
+<!-- Product Style -->
+<section class="product-area shop-sidebar shop section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-12">
+                <div class="shop-sidebar">
+                    <!-- Single Widget -->
+                    <div class="single-widget category">
+                        <h3 class="title">Categories</h3>
+                        <ul class="categor-list">
+                            {% recursetree category %}
+                            
+                            <li><a href="/category/{{node.id}}/{{node.slug}}" style="color: black;">
+                                    {{node.title}}</a>
+                                {% if not node.is_leaf_node %}
+                            </li>
+                            <ul class="children">
+                                <a href="/category/{{node.id}}/{{node.slug}}" style="color: black;">
+                                    {{children }}</a>
+                            </ul> {%endif%} {% endrecursetree%}
+                        </ul>
+                    </div>
+                    <!--/ End Single Widget -->
+                    <!-- Shop By Price -->
+                    <!-- <div class="single-widget range">
+                        <h3 class="title">Shop by Price</h3>
+                        <div class="price-filter">
+                            <div class="price-filter-inner">
+                                <div id="slider-range"></div>
+                                <div class="price_slider_amount">
+                                    <div class="label-input">
+                                        <span>Range:</span><input type="text" id="amount" name="price"
+                                            placeholder="Add Your Price" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="check-box-list">
+                            <li>
+                                <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox">$20 -
+                                    $50<span class="count">(3)</span></label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">$50 -
+                                    $100<span class="count">(5)</span></label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">$100 -
+                                    $250<span class="count">(8)</span></label>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <!--/ End Shop By Price -->
+                    <!-- Single Widget -->
+                    <!-- Single Widget -->
+                    <div class="single-widget recent-post" style="height: 550px;">
+                        <h3 class="title">Recent View Product </h3>
+                        <!-- Single Post -->
+                        {% for rs in recently_view_product%}
+                        <div class="single-post first">
+                            <div class="image">
+                                <img src="{{rs.image.url}}" alt="#">
+                            </div>
+                            <div class="content">
+                                <h5><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h5>
+                                <p class="price">${{rs.price}}</p>
+                                
+                            </div>
+                        </div>
+                       {% endfor %}
+                    </div>
+                    <!--/ End Single Widget -->
+                    <!-- Single Widget -->
+                    <!-- <div class="single-widget category">
+                        <h3 class="title">Manufacturers</h3>
+                        <ul class="categor-list">
+                            <li><a href="#">Forever</a></li>
+                            <li><a href="#">giordano</a></li>
+                            <li><a href="#">abercrombie</a></li>
+                            <li><a href="#">ecko united</a></li>
+                            <li><a href="#">zara</a></li>
+                        </ul>
+                    </div> -->
+                    <!--/ End Single Widget -->
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8 col-12">
+                <div class="row container">
+                    <div class="col-12">
+                        <!-- Shop Top -->
+                        <div class="shop-top" style="clear: both;
+                        background: #f6f7fb;
+                        padding: 18px 20px 50px 24px;
+                        margin-top: 10px;
+                        width: 400px;">
+                            <div class="shop-shorter">
+                                <div class="single-shorter">
+                                
+                                    {% if products.has_previous %}
+                                      <a class="pagination_button" href="?page=1" style="color: white;">First</a>
+                                      <a class="pagination_button" href="?page={{ products.previous_page_number }}" style="color: white;" >Previous</a>
+                                    {% endif %}
+                              
+                                    {% for num in products.paginator.page_range %}
+                                      {% if products.number == num %}
+                                        <a class="pagination_button" href="?page={{ num }}" style="color: white;">{{ num }}</a>
+                                      {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                                        <a class="pagination_button" href="?page={{ num }}" style="color: white;">{{ num }}</a>
+                                      {% endif %}
+                                    {% endfor %}
+                              
+                                    {% if products.has_next %}
+                                      <a class="pagination_button" href="?page={{ products.next_page_number }}" style="color: white;">Next</a>
+                                      <a class="pagination_button" href="?page={{ products.paginator.num_pages }}" style="color: white;">Last</a>
+                                    {% endif %}
+                              
+                                  
+                                    
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <!--/ End Shop Top -->
+                    </div>
+                </div>
+                <div class="row">
+                    {% for rs in products%}
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="single-product">
+                            <div class="product-img">
+                                <a href="/product/{{ rs.id }}/{{ rs.slug }}">
+                                    <img class="default-img" src="{{rs.image.url}}" alt="#" style="height: 350px;
+                                    width: 245px;">
+                                    <img class="hover-img" src="{{rs.image.url}}" alt="#" style="height: 350px;
+                                    width: 245px;">
+                                </a>
+                                <div class="button-head">
+                                    <div class="product-action">
+                                        <a  href="/product/{{ rs.id }}/{{ rs.slug }}"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                        <a title="Wishlist" href="/orders/addtowishlist/{{ rs.id }}"><i class=" ti-heart "></i><span>Add to
+                                                Wishlist</span></a>
+                            
+                                    </div>
+                                    <div class="product-action-2">
+                                        <a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h3><a href="/product/{{ rs.id }}/{{ rs.slug }}">{{rs.title}}</a></h3>
+                                <div class="product-price">
+                                    <span>{{rs.price}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <br>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Product Style 1  -->
+
+
+
+
+
+
+
+
+{% endblock %}

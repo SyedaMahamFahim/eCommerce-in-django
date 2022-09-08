@@ -1,0 +1,21 @@
+.three_col_product{
+    height: 210px !important;
+    width: 160px !important;
+}
+.slider_images{
+    height: 380px !important;
+    width: 360px !important;
+}
+
+
+ .pagination_button{
+    padding: 5px 10px;
+    background: #262F75;
+    color: white;
+    }
+
+.pagination_button:hover{
+    padding: 5px 10px;
+    background: #ef3f49;
+    color: white;
+}

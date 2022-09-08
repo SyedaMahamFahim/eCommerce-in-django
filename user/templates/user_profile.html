@@ -1,0 +1,312 @@
+{% extends 'homebase.html' %}
+{%load mptt_tags%}
+{% block title%}{{ user.username }} Profile {% endblock%}
+{% block keywords%} {{product.description}} {% endblock%}
+{% block description%}{{ product.keywords}} {% endblock%}
+{% load static %}
+<style>
+    .user-detail-btn{
+    background: #262F75;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 100px;
+}
+</style>
+{% block breadcurm%} {{ user.username }} Profile {% endblock %}
+
+{% block content%}
+
+
+<link rel="stylesheet" href=" {%static 'css/userprofile.css' %}">
+
+<div class="container light-style flex-grow-1 container-p-y">
+
+    <h4 class="font-weight-bold py-3 mb-4">
+        Account settings
+    </h4>
+
+    <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-3 pt-0">
+                <div class="list-group list-group-flush account-settings-links">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list"
+                        href="#account-detail">Account Detail</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-change-password">Update Profile</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Change Password</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-social-links">Order Detail List</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#order-products-list">All Ordered Products List</a>    
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-connections">Comments</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-notifications">WishList</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+
+                    <!-- Account Detail -->
+                    <div class="tab-pane fade active show" id="account-detail">
+
+                        <div class="card-body media align-items-center">
+                            <img src="{{ profile.image.url }}" style=" height: 100px;"
+                                class="d-block ui-w-80">
+                            <div class="media-body ml-4">
+                                <label class="btn btn-outline-primary">
+                                    <a href="/logout"> Logout</a>
+                        
+                                </label> &nbsp;
+                                <button type="button" class="btn btn-default md-btn-flat"> <a href="/shop">
+                                   Shop Now  </a></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="shopping-cart-table table">
+                                <tr>
+                                    <th class="text-left">Username</th>
+                                    <td class="text-left">{{ user.username}} </td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left">Email</th>
+                                    <td class="text-left">{{ profile.user.email}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left">Phone</th>
+                                    <td class="text-left">{{ profile.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left"> Address</th>
+                                    <td class="text-left">{{ profile.address}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left">City</th>
+                                    <td class="text-left">{{ profile.city}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-left">Country</th>
+                                    <td class="text-left">{{ profile.country}}</td>
+                                </tr>
+        
+                            </table>
+                        </div>
+
+                    </div>
+                   
+                   
+                    <!-- Update Account  -->
+                    <div class="tab-pane fade" id="account-change-password">
+                        <div class="card-body pb-2">
+                            <form method="POST" enctype = "multipart/form-data">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    <div class="form-group">
+                                        <p> {{ user_form.as_p  }} <br> </p>
+                                        <br>
+                                        <p> {{ profile_form.as_p  }} <br> </p>
+                                        
+                                    </div>
+                                   
+                                </fieldset>
+                                <div class="text-right mt-3">
+                                    <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                                </div>
+                                
+                            </form>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="tab-pane fade" id="account-info">
+                        <div class="card-body pb-2">
+
+                            {% if messages %}
+                            {% for message in messages %}
+                                <div style="color: #d43f3a; font-size: medium">
+                                    {{ message|safe }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                       </div>
+               
+
+                    <form method="post">
+                        {% csrf_token %}
+                        
+
+                    {% for field in update_password_form  %}
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="form-label" style="color: black; font-weight: 700;">{{ field.label_tag }}</label> <br>
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% for error in field.errors %}
+                    <div class="col-12">
+                        <div class="form-group">
+                            <p style="color: red; font-weight: 700;">{{ error }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="text-right mt-3">
+                        <button type="submit" class="btn btn-primary">Save changes</button>&nbsp;
+                    </div>
+                    </form>
+
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="account-social-links">
+                        <div class="card-body pb-2">
+                            <table class="shopping-cart-table table">
+                                <tr>
+                                    <th class="text-left">Id </th>
+                                    <th class="text-left">First Name </th>
+                                    <th class="text-left">Last Name </th>
+                                    <th class="text-left">Total </th>
+                                    <th class="text-left">Status </th>
+                                    <th class="text-left">Date </th>
+                                    <th class="text-left">Detail </th>
+                                </tr>
+                                {% for rs in orders %}
+                                    <tr>
+                                        <td class="text-left">{{ rs.id}} </td>
+                                        <td class="text-left">{{ rs.first_name}} </td>
+                                        <td class="text-left">{{ rs.last_name}} </td>
+                                        <td class="text-left">{{ rs.total}} </td>
+                                        <td class="text-left">{{ rs.status}} </td>
+                                        <td class="text-left">{{ rs.create_at}} </td>
+
+                                        <td class="text-left">
+                                            
+                                            <a class="primary-btn" href="/orderdetail/{{ rs.id }}" style="background: #262F75;
+                                            color: white;
+                                            padding: 6px 15px;
+                                            border-radius: 100px;"> Detail </a></td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="order-products-list">
+                        <div class="card-body pb-2">
+                            <table class="shopping-cart-table table">
+                                <tr>
+                                    <th class="text-left">Id </th>
+                                    <th class="text-left">Product Name </th>
+                                    <th class="text-left">Price </th>
+                                    <th class="text-left">Qauatity </th>
+                                    <th class="text-left">Amount </th>
+                                    <th class="text-left">Status </th>
+                                    <th class="text-left">Date </th>
+                                    <th class="text-left">Detail </th>
+                                </tr>
+                                {% for rs in order_product %}
+                                    <tr>
+                                        <td class="text-left">
+                                            <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                                {% if rs.variant.image_id > 0 %}
+                                                    <img src="{{rs.variant.image }}" alt="" style="height: 80px">
+                                                {% else %}
+                                                    <img src="{{rs.product.image.url}}" alt="" style="height: 80px">
+                                                {% endif %}
+                                            </a>
+                                        </td>
+                                        <td>{{ rs.product.title}} {{ rs.variant.size }}   {{ rs.variant.color }}</td>
+                                        <td class="text-left">{{ rs.price}} </td>
+                                        <td class="text-left">{{ rs.quantity}} </td>
+                                        <td class="text-left">{{ rs.amount}} </td>
+                                        <td class="text-left">{{ rs.status}} </td>
+                                        <td class="text-left">{{ rs.create_at}} </td>
+                                        <td class="text-left"><a class="primary-btn user-detail-btn" href="/single_order_product_detail/{{ rs.id }}/{{ rs.order.id}}" style="background: #262F75;
+                                            color: white;
+                                            padding: 6px 15px;
+                                            border-radius: 100px;"> Detail </a></td>
+    
+                                    </tr>
+                                {% endfor %}
+    
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="account-connections">
+                        <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Product </th>
+                                <th class="text-left">Rate </th>
+                                <th class="text-left">Subject </th>
+                                <th class="text-left">Comment </th>
+                                <th class="text-left">Status </th>
+                                <th class="text-left">Date </th>
+                                <th class="text-left">Detail </th>
+                            </tr>
+                            {% for rs in comments %}
+                                <tr>
+                                    <td class="text-left">
+                                        <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                            <strong> {{ rs.product.title}}</strong>
+                                        </a>
+                                    </td>
+                                    <td class="text-left">{{ rs.rate}} </td>
+                                    <td class="text-left">{{ rs.subject}} </td>
+                                    <td class="text-left" style="width: 50px;">{{ rs.comment}} </td>
+                                    <td class="text-left">{{ rs.status}} </td>
+                                    <td class="text-left">{{ rs.create_at}} </td>
+                                    <td class="text-left">
+                                        <a class="primary-btn" href="/deletecomment/{{ rs.id }}" onclick="return confirm('Will be Delete ! Are you sure?')"> Delete </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="account-notifications">
+                        <table class="shopping-cart-table table">
+                            <tr>
+                                <th class="text-left">Id </th>
+                                <th class="text-left">Product Name </th>
+                                <th class="text-left">Price </th>
+                                <th class="text-left">Qauatity </th>  
+                                <th class="text-left">Detail </th>
+                            </tr>
+                            {% for rs in wishlist %}
+                                <tr>
+                                    <td class="text-left">
+                                        <a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}">
+                                            {% if rs.variant.image_id > 0 %}
+                                                <img src="{{rs.variant.image }}" alt="" style="height: 80px;">
+                                            {% else %}
+                                                <img src="{{rs.product.image.url}}" alt="" style="width: 60px;height: 80px;">
+                                            {% endif %}
+                                        </a>
+                                    </td>
+                                    <td>{{ rs.product.title}} {{ rs.variant.size }}   {{ rs.variant.color }}</td>
+                                    <td class="text-left">{{ rs.price}} </td>
+                                    <td class="text-left">{{ rs.quantity}} </td>
+    
+                                    <td class="text-left"><a class="primary-btn user-detail-btn" href="/product/{{ rs.product_id }}/{{ rs.product.slug }}" style="background: #262F75;
+                                        color: white;
+                                        padding: 6px 15px;
+                                        border-radius: 100px;"> Detail </a></td>
+
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+</div>
+
+<br><br>
+
+
+{% endblock %}

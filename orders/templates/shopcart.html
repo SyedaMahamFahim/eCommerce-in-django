@@ -1,0 +1,118 @@
+{% extends 'homebase.html' %}
+{% block title%}Cart{% endblock%}
+{% block keywords%} Cart Page {% endblock%}
+{% block description%}Cart Page {% endblock%}
+{% load static %}
+{% block breadcurm%} Cart {% endblock %}
+    
+{% block content%} 
+
+<!-- Shopping Cart -->
+<div class="shopping-cart section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Shopping Summery -->
+                <table class="table shopping-summery">
+                    <thead>
+                        <tr class="main-hading">
+                            <th>PRODUCT</th>
+                            <th>NAME</th>
+                            <th class="text-center">UNIT PRICE</th>
+                            <th class="text-center">QUANTITY</th>
+                            <th class="text-center">TOTAL</th> 
+                            <th class="text-center"><i class="ti-trash remove-icon"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for rs in shopcart %}
+                        <tr>
+                            
+                            <td class="image" data-title="No">
+                                <!-- {% if rs.variant.image_id  > 0 %}
+                                <img src=" {{rs.variant.image }}"style="width: 300px;
+                                height: 130px;" alt="#" >
+                                {% else %} -->
+                                <img src="{{rs.product.image.url}}" alt="" style="width: 300px;
+                                height: 130px;" >
+                            <!-- {% endif %} -->
+                            </td>
+                            <td class="product-des" data-title="Description">
+                                <p class="product-name"><a href="#">{{rs.product.title}}</a></p>
+                                <p class="product-des">{{rs.product.description}}</p>
+                            </td>
+                            <td class="price" data-title="Price">
+                                <span>
+                                    
+                                    
+                                            {{rs.product.price}}
+                                       
+                                </span>
+                            </td>
+                            <td class="qty" data-title="Qty"><!-- Input Order -->
+                                <p class="product-des">
+                                    {{rs.quantity}}
+                                    
+                                </p>
+                                <!--/ End Input Order -->
+                            </td>
+                            <td class="total-amount" data-title="Total">
+                                <span>
+                                            {{ rs.amount}} 
+
+                                </span>
+                            </td>
+                            <td class="action" data-title="Remove"><a href="/orders/deletefromcart/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')" class="main-btn icon-btn">
+                                <i class="ti-trash remove-icon"></i></a></td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                <!--/ End Shopping Summery -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- Total Amount -->
+                <div class="total-amount">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-5 col-12">
+                            <div class="left">
+                                <div class="coupon">
+                                    <h5>OurBuddy Shop</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-7 col-12">
+                            <div class="right">
+
+                                <ul>
+                                    
+                                    <li>Cart Subtotal<span>{{total}}</span></li>
+                                    <li>Shipping<span>Free</span></li>
+
+                                    <li class="last">You Pay<span>{{total}}</span></li>
+                                   
+                                </ul>
+                                <div class="button5">
+                                    <a href="/checkout" class="btn">Checkout</a>
+                                    <a href="/" class="btn">Continue shopping</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ End Total Amount -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ End Shopping Cart -->
+
+
+	
+	
+
+
+{% endblock %}

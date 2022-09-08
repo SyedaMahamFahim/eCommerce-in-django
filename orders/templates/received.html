@@ -1,0 +1,46 @@
+{% extends 'homebase.html' %}
+{% block title %} Received Order{% endblock %}
+{% load static %}
+{% block breadcurm%} Received Order {% endblock %}
+
+
+{% block content%}
+
+
+
+
+
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="order-summary clearfix">
+                    <div class="section-title">
+                        <h3 class="title">Order Complated</h3>
+                    </div>
+                    <hr>
+                    <h2>Dear {{ user.username }} </h2>
+                    <hr>
+                    <h3>Your order has been Received</h3>
+                    <h3>Order Code : {{ ordercode }}</h3>
+                    <h3>Thank You</h3>
+                    <hr>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'homebase.html' %}
+{% block title %} Login{% endblock %}
+{% load static %}
+{% block breadcurm%} Login {% endblock %}
+{% block content%} 
+
+<!-- Alert Notification -->
+<div class="container">
+    <form action="" method="post"> {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputEmail1">User Name </label>
+          <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter your username" name="username" required >
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" placeholder="Password" id="password" name="password"required><br>
+          <input type="checkbox" onclick="showPassword()" >  Show Password
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+<br><br>
+<!-- Start Most Popular -->
+<div class="product-area most-popular section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Hot Item</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="owl-carousel popular-slider">
+                    <!-- Start Single Product -->
+                    {% for rs in products_slider%}
+                    <div class="single-product">
+                        <div class="product-img">
+                            <a href="/product/{{ rs.id }}/{{ rs.slug }}">
+                                <img class="default-img slider_images" src="{{rs.image.url}}" alt="#">
+                                <img class="hover-img slider_images" src="{{rs.image.url}}" alt="#">
+                                <span class="out-of-stock">Hot</span>
+                            </a>
+                            <div class="button-head">
+                                <div class="product-action">
+                                    <a data-toggle="modal" data-target="#exampleModal" title="Quick View"
+                                        href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                    <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to
+                                            Wishlist</span></a>
+                                    <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to
+                                            Compare</span></a>
+                                </div>
+                                <div class="product-action-2">
+                                    <a title="Add to cart" href="/orders/addtoshopcart/{{ rs.id }}">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="product-details.html">{{rs.title}}</a></h3>
+                            <div class="product-price">
+                                <span class="old">{{rs.price}}</span>
+                                <span>{{rs.price}}</span>
+                                <a href="/product/{{product.id}}/{{product.slug}}">Buy Now </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Most Popular Area -->
+	
+
+<script>
+    function showPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+{% endblock %}
