@@ -32,6 +32,8 @@
 - Reviews section
 - and many other
 
+## Video
+https://drive.google.com/file/d/1P9Z-NE30miz3xEnx7VJgabJsor8wKCnB/view?usp=sharing
 
 ## Run Locally
 
